@@ -2,6 +2,9 @@
 #include <chrono>
 #include <thread>
 
+
+#define DELAYLENGTH 2000
+
 // look at the documentation of this bullshit here: https://undocumented.ntinternals.net/, https://www.pinvoke.net/default.aspx/ntdll.RtlAdjustPrivilege and in the mingw 64 source wdm.h at https://github.com/mirror/mingw-w64/blob/master/mingw-w64-headers/ddk/include/ddk/wdm.h
 
 #define SE_SHUTDOWN_PRIVILEGE 19
@@ -23,7 +26,7 @@ int main()
 {
 	PlaySound(MAKEINTRESOURCE(101), GetModuleHandle(NULL), SND_RESOURCE | SND_ASYNC);
 
-	std::this_thread::sleep_for(std::chrono::seconds(3));
+	std::this_thread::sleep_for(std::chrono::milliseconds(DELAYLENGTH));
 
 	HMODULE libh = LoadLibraryA("ntdll.dll");
 
